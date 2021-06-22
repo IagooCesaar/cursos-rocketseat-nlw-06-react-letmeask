@@ -1,23 +1,17 @@
 import React from 'react';
 import Image from 'next/image'
-import { useRouter } from 'next/router';
 
 import { Button } from '../components/Button'
 import { Illustration } from '../components/Illustration'
 
-import { firebase, auth } from '../services/firebase'
-
 import styles from './home.module.scss';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Home() {
-  const router = useRouter();
+  const { signInWithGoogle } = useAuth();
 
   function handleCreateRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then(result => {
-      console.log(result)
-      router.push('/rooms/new')
-    })
+    signInWithGoogle();
   }
 
   return (

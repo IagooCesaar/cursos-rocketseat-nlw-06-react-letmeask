@@ -1,8 +1,11 @@
-import { createContext } from 'react';
-import { ReactNode } from 'react';
+import { createContext, ReactNode } from 'react';
+import Router from 'next/router';
+
+import { firebase, auth } from '../services/firebase'
 
 type AuthContextData = {
-  isAuthenticated: boolean
+  isAuthenticated: boolean;
+  signInWithGoogle: () => void;
 }
 
 type AuthProviderProps = {
@@ -15,9 +18,19 @@ export function AuthProvider({
   children
 }: AuthProviderProps) {
   const isAuthenticated = false;
+
+  function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).then(result => {
+      console.log(result)
+      Router.push('/rooms/new')
+    })
+  }
+
   return (
     <AuthContext.Provider value={{
-      isAuthenticated
+      isAuthenticated,
+      signInWithGoogle
     }}>
       {children}
     </AuthContext.Provider>
