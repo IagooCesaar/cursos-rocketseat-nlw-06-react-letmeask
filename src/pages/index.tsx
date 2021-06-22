@@ -1,11 +1,18 @@
-import Image from 'next/image'
 import React from 'react';
+import Image from 'next/image'
+import { useRouter } from 'next/router';
 import { Button } from '../components/Button'
 import { Illustration } from '../components/Illustration'
 
 import styles from './home.module.scss';
 
 export default function Home() {
+  const router = useRouter();
+
+  function handleNavigateToNewRoom() {
+    router.push('/rooms/new')
+  }
+
   return (
     <div className={styles.home}>
       <Illustration />
@@ -18,7 +25,10 @@ export default function Home() {
             width="154.2px"
             height="69px"
           />
-          <button className={styles.createRoom}>
+          <button
+            className={styles.createRoom}
+            onClick={handleNavigateToNewRoom}
+          >
             <Image
               src="/google-icon.svg"
               alt="Logo do Google"
