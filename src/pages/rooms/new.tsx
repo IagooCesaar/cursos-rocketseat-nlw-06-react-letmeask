@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import { Button } from '../../components/Button'
 import { Illustration } from '../../components/Illustration';
 
@@ -25,7 +26,7 @@ export default function NewRoom() {
             />
             <Button type="submit">Criar sala</Button>
           </form>
-          <p>Quer entrar um uma sala já existente? <a href="#">Clique aqui</a></p>
+          <p>Quer entrar um uma sala já existente? <Link href="/"><a>Clique aqui</a></Link></p>
         </div>
       </main>
     </div>
