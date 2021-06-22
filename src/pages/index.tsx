@@ -1,21 +1,14 @@
 import Image from 'next/image'
+import React from 'react';
 import { Button } from '../components/Button'
+import { Illustration } from '../components/Illustration'
 
 import styles from './home.module.scss';
 
 export default function Home() {
   return (
-    <div className={styles.pageAuth}>
-      <aside>
-        <Image
-          src="/illustration.svg"
-          alt="Ilustração simbolizando perguntas e respostas"
-          width="313px"
-          height="403px"
-        />
-        <strong>Crie salas de Q&amp;A ao vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo real</p>
-      </aside>
+    <div className={styles.home}>
+      <Illustration />
 
       <main>
         <div className={styles.mainContent}>
