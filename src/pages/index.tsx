@@ -17,12 +17,12 @@ export default function Home() {
       </aside>
 
       <main>
-        <div>
+        <div className={styles.mainContent}>
           <Image
             src="/logo.svg"
             alt="Letmeask"
-            width="313px"
-            height="403px"
+            width="154.2px"
+            height="69px"
           />
           <button>
             <Image
