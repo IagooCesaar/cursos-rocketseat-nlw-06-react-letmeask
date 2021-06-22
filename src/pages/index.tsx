@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Button } from '../components/Button'
 
 import styles from './home.module.scss';
 
@@ -39,7 +40,7 @@ export default function Home() {
               type="text"
               placeholder="Digite o código da sala"
             />
-            <button type="submit">Entrar na sala</button>
+            <Button type="submit">Entrar na sala</Button>
           </form>
         </div>
       </main>
