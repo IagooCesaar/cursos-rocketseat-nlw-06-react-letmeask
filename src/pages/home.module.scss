@@ -74,6 +74,30 @@
     }
   }
 
+  .createRoom {
+    width: 100%;
+    margin-top: 4rem;
+    height: 3.125rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    background: var(--google);
+    color: var(--white);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+
+    span {
+      margin-left: 0.5rem;
+    }
+    
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.9)
+    }
+  }
+
   .separator {    
     font-size: 0.875rem;
     color: var(--gray-medium);

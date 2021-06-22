@@ -24,14 +24,14 @@ export default function Home() {
             width="154.2px"
             height="69px"
           />
-          <button>
+          <button className={styles.createRoom}>
             <Image
               src="/google-icon.svg"
               alt="Logo do Google"
-              width="400px"
-              height="100vh"
+              width="24px"
+              height="24px"
             />
-            Crie sua sala com o Google
+            <span>Crie sua sala com o Google</span>
           </button>
           <div className={styles.separator}>ou entre em uma sala</div>
           <form>
