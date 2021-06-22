@@ -1,16 +1,23 @@
 import React from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+
 import { Button } from '../components/Button'
 import { Illustration } from '../components/Illustration'
+
+import { firebase, auth } from '../services/firebase'
 
 import styles from './home.module.scss';
 
 export default function Home() {
   const router = useRouter();
 
-  function handleNavigateToNewRoom() {
-    router.push('/rooms/new')
+  function handleCreateRoom() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).then(result => {
+      console.log(result)
+      router.push('/rooms/new')
+    })
   }
 
   return (
@@ -27,7 +34,7 @@ export default function Home() {
           />
           <button
             className={styles.createRoom}
-            onClick={handleNavigateToNewRoom}
+            onClick={handleCreateRoom}
           >
             <Image
               src="/google-icon.svg"
