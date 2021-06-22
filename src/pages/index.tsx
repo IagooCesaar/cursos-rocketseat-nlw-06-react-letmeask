@@ -12,10 +12,12 @@ import styles from './home.module.scss';
 
 export default function Home() {
   const router = useRouter();
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, isAuthenticated } = useAuth();
 
   async function handleCreateRoom() {
-    await signInWithGoogle();
+    if (!isAuthenticated) {
+      await signInWithGoogle();
+    }
     router.push('/rooms/new')
   }
 
