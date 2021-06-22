@@ -1,0 +1,21 @@
+.pageAuth {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+
+  aside {
+    flex: 7;    
+    background: var(--purple);
+    color: var(--white);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 7.5rem 5rem;
+  }
+
+  main {
+    flex: 8;
+  }
+}
