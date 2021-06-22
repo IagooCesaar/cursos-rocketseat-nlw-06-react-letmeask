@@ -1,17 +1,22 @@
 import React from 'react';
 import Image from 'next/image'
 
+import { useAuth } from '../hooks/useAuth';
+import { useRouter } from 'next/router';
+
 import { Button } from '../components/Button'
 import { Illustration } from '../components/Illustration'
 
 import styles from './home.module.scss';
-import { useAuth } from '../hooks/useAuth';
+
 
 export default function Home() {
+  const router = useRouter();
   const { signInWithGoogle } = useAuth();
 
-  function handleCreateRoom() {
-    signInWithGoogle();
+  async function handleCreateRoom() {
+    await signInWithGoogle();
+    router.push('/rooms/new')
   }
 
   return (

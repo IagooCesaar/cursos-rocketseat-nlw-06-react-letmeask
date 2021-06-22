@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useState } from 'react';
-import Router from 'next/router';
 
 import { firebase, auth } from '../services/firebase'
 
@@ -12,7 +11,7 @@ type User = {
 type AuthContextData = {
   user: User | undefined;
   isAuthenticated: boolean;
-  signInWithGoogle: () => void;
+  signInWithGoogle: () => Promise<void>;
 }
 
 type AuthProviderProps = {
@@ -25,23 +24,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
   const isAuthenticated = !!user;
 
-  function signInWithGoogle() {
+  async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then(result => {
-      console.log(result)
-      if (result.user) {
-        const { displayName, photoURL, uid } = result.user;
-        if (!displayName || !photoURL) {
-          throw new Error('Missing information from Google Account.')
-        }
-        setUser({
-          id: uid,
-          name: displayName,
-          avatar: photoURL,
-        })
+    const result = await auth.signInWithPopup(provider);
+
+    console.log(result)
+    if (result.user) {
+      const { displayName, photoURL, uid } = result.user;
+      if (!displayName || !photoURL) {
+        throw new Error('Missing information from Google Account.')
       }
-      Router.push('/rooms/new')
-    })
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      })
+    }
   }
 
   return (
