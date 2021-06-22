@@ -33,7 +33,7 @@ export default function Home() {
             />
             Crie sua sala com o Google
           </button>
-          <div>ou entre em uma sala</div>
+          <div className={styles.separator}>ou entre em uma sala</div>
           <form>
             <input
               type="text"

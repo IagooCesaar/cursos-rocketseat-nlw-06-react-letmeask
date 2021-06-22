@@ -73,4 +73,30 @@
 
     }
   }
+
+  .separator {    
+    font-size: 0.875rem;
+    color: var(--gray-medium);
+
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &::before{
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-medium);
+      margin-right: 1rem;
+    }
+    
+    &::after{
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-medium);
+      margin-left: 1rem;
+    }
+  }
 }
