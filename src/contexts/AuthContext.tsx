@@ -10,7 +10,7 @@ type User = {
 }
 
 type AuthContextData = {
-  user: User;
+  user: User | undefined;
   isAuthenticated: boolean;
   signInWithGoogle: () => void;
 }
@@ -21,9 +21,7 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextData);
 
-export function AuthProvider({
-  children
-}: AuthProviderProps) {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
   const isAuthenticated = !!user;
 
@@ -32,15 +30,10 @@ export function AuthProvider({
     auth.signInWithPopup(provider).then(result => {
       console.log(result)
       if (result.user) {
-        const {
-          displayName,
-          photoURL,
-          uid
-        } = result.user;
+        const { displayName, photoURL, uid } = result.user;
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account.')
         }
-
         setUser({
           id: uid,
           name: displayName,
@@ -53,6 +46,7 @@ export function AuthProvider({
 
   return (
     <AuthContext.Provider value={{
+      user,
       isAuthenticated,
       signInWithGoogle
     }}>
